@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصص الصمود - توثيق روايات أهل غزة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a3a5f;
+            --secondary-color: #2c5282;
+            --accent-color: #ed8936;
+            --light-color: #f7fafc;
+            --dark-color: #2d3748;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* الهيدر */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: #fbd38d;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li:first-child {
+            margin-left: 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fbd38d;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* القسم الرئيسي */
+        .hero {
+            background: linear-gradient(rgba(26, 58, 95, 0.85), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #fbd38d;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* قسم القصص */
+        .stories-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+        
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .story-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .story-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .story-card:hover .story-overlay {
+            opacity: 1;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .story-excerpt {
+            color: var(--dark-color);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+        
+        .story-card:hover .read-more {
+            color: var(--secondary-color);
+        }
+        
+        /* قسم الوسائط */
+        .media-section {
+            background-color: #edf2f7;
+            padding: 4rem 0;
+        }
+        
+        .media-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .media-tab {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .media-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .media-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--accent-color);
+        }
+        
+        .media-content {
+            display: none;
+        }
+        
+        .media-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+        
+        .video-thumbnail:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-thumbnail i {
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 10px;
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+        }
+        
+        .video-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .photo-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        /* مودال القصة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            color: #718096;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .modal-text {
+            line-height: 1.8;
+            color: var(--dark-color);
+        }
+        
+        .modal-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* الفوتر */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: #fbd38d;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            padding-right: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+        
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .stories-container, .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: var(--primary-color);
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .media-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .media-tab {
+                width: 80%;
+                text-align: center;
+                border-bottom: none;
+                border-right: 3px solid transparent;
+            }
+            
+            .media-tab.active {
+                border-right-color: var(--accent-color);
+                border-bottom-color: transparent;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .stories-container, .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <h1>قصص <span>الصمود</span></h1>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="mainNav">
+                        <li><a href="#" class="active">الرئيسية</a></li>
+                        <li><a href="#stories">قصص الصمود</a></li>
+                        <li><a href="#media">الوسائط</a></li>
+                        <li><a href="#about">عن المشروع</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <div class="container">
+            <h2>توثيق قصص الصمود في غزة</h2>
+            <p>منصة توثيق قصص الصمود الإنساني لأهل غزة، نحفظ الذاكرة المجتمعية للأحداث ونسجل روايات التحدي والإصرار في وجه الظروف الصعبة. كل قصة هنا تمثل جزءًا من نسيج المقاومة والصمود الفلسطيني.</p>
+            <a href="#stories" class="btn">اكتشف القصص</a>
+        </div>
+    </section>
+
+    <!-- قسم القصص -->
+    <section id="stories" class="stories-section">
+        <div class="container">
+            <h2 class="section-title">قصص الصمود</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--dark-color);">
+                قصص حقيقية لأشخاص تحدوا الظروف الصعبة وحافظوا على إنسانيتهم وكرامتهم في مدينة غزة. كل قصة تحمل رسالة أمل وتحدٍ.
+            </p>
+            
+            <div class="stories-container">
+                <!-- القصة 1 -->
+                <div class="story-card" data-story="1">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-overlay">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>المعلم الذي لم يستسلم</h3>
+                        <div class="story-meta">
+                            <span><i class="far fa-user"></i> أحمد محمد</span>
+                            <span><i class="far fa-calendar"></i> أكتوبر 2023</span>
+                        </div>
+                        <p class="story-excerpt">على الرغم من تدمير مدرسته، واصل أحمد تعليم الأطفال تحت شجرة زيتون، مؤمنًا بأن التعليم هو أقوى وسائل المقاومة...</p>
+                        <div class="read-more">
+                            اقرأ القصة كاملة <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- القصة 2 -->
+                <div class="story-card" data-story="2">
+                    <div class="story-image" style="background-image: url('data:image/jpeg;base64,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');">
+                        <div class="story-overlay">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>  
+                    </div>
+                    <div class="story-content">
+                        <h3>الطبيبة التي أنقذت المئات</h3>
+                        <div class="story-meta">
+                            <span><i class="far fa-user"></i> د. سمر خالد</span>
+                            <span><i class="far fa-calendar"></i> نوفمبر 2023</span>
+                        </div>
+                        <p class="story-excerpt">عملت د. سمر لمدة 48 ساعة متواصلة في مستشفى ميداني لتضميد جراح الأطفال والنساء، رافضةً مغادرة موقع عملها رغم الظروف الخطرة...</p>
+                        <div class="read-more">
+                            اقرأ القصة كاملة <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- القصة 3 -->
+                <div class="story-card" data-story="3">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-overlay">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>عائلة بنت من الركام</h3>
+                        <div class="story-meta">
+                            <span><i class="far fa-user"></i> عائلة الشاعر</span>
+                            <span><i class="far fa-calendar"></i> ديسمبر 2023</span>
+                        </div>
+                        <p class="story-excerpt">بعد تدمير منزلهم بالكامل، جمعت العائلة ما تبقى من ممتلكاتهم وبدأت في بناء غرفة صغيرة من الركام، مصممة على البقاء في أرضها...</p>
+                        <div class="read-more">
+                            اقرأ القصة كاملة <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- القصة 4 -->
+                <div class="story-card" data-story="4">
+                    <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-overlay">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>مزارعو غزة الأخضر</h3>
+                        <div class="story-meta">
+                            <span><i class="far fa-user"></i> أبو ياسر</span>
+                            <span><i class="far fa-calendar"></i> يناير 2024</span>
+                        </div>
+                        <p class="story-excerpt">رغم تدمير معظم الأراضي الزراعية، استطاع أبو ياسر وجيرانه زراعة الخضروات في أي بقعة أرض متاحة، محافظين على مصدر غذائي حيوي...</p>
+                        <div class="read-more">
+                            اقرأ القصة كاملة <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الوسائط -->
+    <section id="media" class="media-section">
+        <div class="container">
+            <h2 class="section-title">الوسائط المتعددة</h2>
+            
+            <div class="media-tabs">
+                <button class="media-tab active" data-media="videos">مقاطع الفيديو</button>
+                <button class="media-tab" data-media="photos">معرض الصور</button>
+            </div>
+            
+            <!-- مقاطع الفيديو -->
+            <div id="videos-content" class="media-content active">
+                <div class="videos-grid">
+                    <div class="video-item">
+                        <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>مدرسة تحت شجرة الزيتون</h4>
+                            <p>تقرير مصور عن مدرسة ميدانية أنشأها معلمون متطوعون لتعليم الأطفال بعد تدمير مدارسهم.</p>
+                            <p><strong>المدة:</strong> 8 دقائق</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>يوميات طبيبة غزة</h4>
+                            <p>توثيق ليوم عمل طبيبة في مستشفى ميداني تعمل تحت الضغط ونقص الإمكانيات.</p>
+                            <p><strong>المدة:</strong> 12 دقيقة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h4>الزراعة من أجل الحياة</h4>
+                            <p>كيف يحافظ المزارعون في غزة على زراعة الأرض رغم كل الصعوبات.</p>
+                            <p><strong>المدة:</strong> 10 دقائق</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- معرض الصور -->
+            <div id="photos-content" class="media-content">
+                <div class="photos-grid">
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1590602847869-f3410baa7d7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">أطفال يتعلمون في مدرسة مؤقتة بعد تدمير مدرستهم</div>
+                    </div>
+                    
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">عائلة تبدأ من جديد بين الركام</div>
+                    </div>
+                    
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">طاقم طبي يعمل في مستشفى ميداني</div>
+                    </div>
+                    
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">مزارع يحصد محصوله رغم الظروف الصعبة</div>
+                    </div>
+                    
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">متطوعون يوزعون المساعدات الغذائية على العائلات</div>
+                    </div>
+                    
+                    <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1589652043056-ba1a2c4830a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="photo-caption">شباب يعيدون بناء منزل مدمر في غزة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن المشروع -->
+    <section id="about" style="padding: 4rem 0; background-color: white;">
+        <div class="container">
+            <h2 class="section-title">عن مشروع توثيق قصص الصمود</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    هذا المشروع هو مبادرة توثيقية تهدف إلى حفظ الذاكرة الجمعية لأهل غزة، وتسجيل قصص الصمود والتحدي التي تعبر عن روح المقاومة الفلسطينية. نحن نؤمن بأن كل قصة إنسانية تستحق أن تُحفظ وتُروى.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div style="text-align: center; padding: 1.5rem; background-color: var(--light-color); border-radius: 10px;">
+                        <i class="fas fa-history" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">حفظ الذاكرة</h3>
+                        <p>توثيق الأحداث والقصص الإنسانية للأجيال القادمة</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 1.5rem; background-color: var(--light-color); border-radius: 10px;">
+                        <i class="fas fa-microphone" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">إعطاء الصوت</h3>
+                        <p>منح منصة لأصوات أهل غزة ليرووا قصصهم بأنفسهم</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 1.5rem; background-color: var(--light-color); border-radius: 10px;">
+                        <i class="fas fa-hands-helping" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">نشر الأمل</h3>
+                        <p>إبراز قصص التحدي والصمود كمصدر إلهام للعالم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال القصة -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">المعلم الذي لم يستسلم</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalImage" class="modal-image"></div>
+                <div class="modal-meta">
+                    <span id="modalAuthor">أحمد محمد</span>
+                    <span id="modalDate">أكتوبر 2023</span>
+                    <span id="modalLocation">غزة</span>
+                </div>
+                <div id="modalText" class="modal-text">
+                    <!-- سيتم تعبئة النص ديناميكيًا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>قصص الصمود</h3>
+                    <p>منصة توثيق قصص الصمود الإنساني لأهل غزة. نحفظ الذاكرة المجتمعية للأحداث ونسجل روايات التحدي والإصرار في وجه الظروف الصعبة.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#stories">قصص الصمود</a></li>
+                        <li><a href="#media">الوسائط</a></li>
+                        <li><a href="#about">عن المشروع</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>شارك قصتك</h3>
+                    <p>إذا كنت من أهل غزة ولديك قصة صمود تريد مشاركتها، تواصل معنا لنوثقها معك.</p>
+                    <p style="margin-top: 1rem;"><i class="fas fa-envelope"></i> stories@gaza-resilience.ps</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                    <div style="display: flex; gap: 15px; margin-top: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 قصص الصمود - توثيق روايات أهل غزة. جميع الحقوق محفوظة. | صمم بدافع الإنسانية والتضامن</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات القصص
+        const stories = {
+            1: {
+                title: "المعلم الذي لم يستسلم",
+                author: "أحمد محمد",
+                date: "أكتوبر 2023",
+                location: "حي الشجاعية، غزة",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                content: `
+                    <p>كان أحمد محمد، معلم الرياضيات في مدرسة الشجاعية الابتدائية، يشاهد من نافذة منزله بينما تسقط القذائف على مدرسته التي عمل فيها لأكثر من عشرين عامًا. في لحظات قليلة، تحولت المدرسة إلى كومة من الركام والحطام.</p>
+                    <p>لكن أحمد لم يستسلم لليأس. في اليوم التالي، جمع مجموعة من الطلاب الذين فقدوا مدرستهم، وبدأ بإعطاء دروس الرياضيات تحت شجرة زيتون كبيرة بالقرب من منزله. "التعلم لا يحتاج إلى جدران"، كان يردد على مسامع تلاميذه.</p>
+                    <p>بمرور الأيام، انضم إليه معلمون آخرون، وبدأت "المدرسة تحت الشجرة" تستقبل العشرات من الطلاب. رغم نقص الكتب والدفاتر، استخدم أحمد الحصى والأغصان لتعليم الرياضيات، واستخدم الرمال لرسم الأحرف والأرقام.</p>
+                    <p>"عندما دمرت مدرستنا، أدركت أنهم يريدون تدمير مستقبل أطفالنا"، يقول أحمد. "لكننا لن نسمح بذلك. التعليم هو أقوى وسائل المقاومة، وهو سلاحنا لبناء مستقبل أفضل".</p>
+                    <p>اليوم، يدرس تحت شجرة الزيتون أكثر من 60 طالبًا من مختلف الأعمار، ويحضر أحمد وزملاؤه دروسًا في الرياضيات واللغة العربية والعلوم، مؤمنين بأنهم بذلك يحافظون على شعلة الأمل في قلوب أطفال غزة.</p>
+                `
+            },
+            2: {
+                title: "الطبيبة التي أنقذت المئات",
+                author: "د. سمر خالد",
+                date: "نوفمبر 2023",
+                location: "مستشفى الشفاء، غزة",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                content: `
+                    <p>عندما بدأت الهجمات على مدينة غزة، كانت د. سمر خالد تقضي إجازتها السنوية مع عائلتها خارج المستشفى. لكنها ما إن سمعت الأنباء الأولى عن عدد الجرحى حتى قررت العودة فورًا إلى عملها في مستشفى الشفاء.</p>
+                    <p>"لا يمكنني البقاء بعيدة عندما يكون الناس بحاجة إليّ"، قالت لزوجها قبل أن تغادر. وعند وصولها إلى المستشفى، وجدت المشهد مأساويًا: الممرات مليئة بالمصابين، ونقص حاد في الأدوية والمعدات الطبية، وطاقم طبي منهك يعمل دون توقف.</p>
+                    <p>عملت د. سمر لمدة 48 ساعة متواصلة، تجري عمليات جراحية طارئة، وتضميد جراح الأطفال والنساء، وتؤمن الرعاية اللازمة للمرضى. رغم الإرهاق ونقص الإمكانيات، رفضت مغادرة موقع عملها.</p>
+                    <p>في إحدى الليالي، بينما كانت تجري عملية دقيقة لطفل تعرض لإصابة بالغة في الرأس، تعرض المستشفى لهجوم أدى إلى انقطاع الكهرباء. لم تتوقف د. سمر، واستمرت في العمل بضوء المصابيح اليدوية، وأنقذت حياة الطفل.</p>
+                    <p>"نحن لسنا أبطالًا"، تقول د. سمر بتواضع. "نحن بشر نقوم بواجبنا الإنساني. لكن في غزة، أصبح الواجب الإنساني معركة يومية من أجل الحفاظ على الحياة".</p>
+                    <p>خلال الأشهر الثلاثة الماضية، قدّمت د. سمر الرعاية الطبية لأكثر من 500 مصاب، وأجرت عشرات العمليات الجراحية المعقدة في ظروف بالغة الصعوبة، لتصبح رمزًا للتضحية والإنسانية في زمن الحرب.</p>
+                `
+            },
+            3: {
+                title: "عائلة بنت من الركام",
+                author: "عائلة الشاعر",
+                date: "ديسمبر 2023",
+                location: "حي التفاح، غزة",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                content: `
+                    <p>عائلة الشاعر كانت تعيش في منزل من ثلاثة طوابق في حي التفاح بغزة. الأب يعمل نجارًا، والأم معلمة، وأربعة أطفال يدرسون في المدارس. كانت حياتهم بسيطة ولكنها سعيدة، حتى جاء ذلك اليوم الذي دمر فيه منزلهم بالكامل.</p>
+                    <p>"خرجنا بأجسادنا فقط"، يقول الأب أبو ياسر. "كل ما كنا نملكه تحول إلى حطام تحت الأنقاض". لكن بدلاً من اليأس، قررت العائلة البقاء في أرضها وبناء منزل جديد من الركام.</p>
+                    <p>بدأوا بجمع الأحجار والأخشاب السليمة من بين الأنقاض. بمساعدة الجيران، نظموا المكان وقاموا ببناء غرفة صغيرة من المواد المتاحة. استخدموا ألواح الصفيح للسقف، وبقايا الأبواب والنوافذ لصنع فتحات للتهوية.</p>
+                    <p>"ليس هذا منزلًا بالمفهوم الحقيقي"، تقول الأم أم ياسر. "لكنه رمز لصمودنا. لن نترك أرضنا مهما كانت الظروف".</p>
+                    <p>الأطفال أيضًا شاركوا في عملية البناء. الابن الأكبر، ياسر (14 عامًا)، ساعد في نقل الأحجار، بينما قامت الابنة الكبرى، مريم (12 عامًا)، بتنظيف المكان وترتيبه. حتى الصغيران، محمد وآية، كانا يساعدان في جمع المسامير والأجزاء القابلة للاستخدام.</p>
+                    <p>اليوم، تعيش العائلة في هذه الغرفة الصغيرة، لكنهم يخططون لبناء غرف إضافية بمجرد توفر المواد. "الحياة تستمر"، يقول أبو ياسر. "ربما فقدنا منزلنا، لكننا لم نفقد إرادتنا في الحياة والعيش بكرامة على أرضنا".</p>
+                `
+            },
+            4: {
+                
+            }
+        };
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // القائمة المتنقلة للهواتف
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('show');
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const navLinks = document.querySelectorAll('#mainNav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('show');
+                });
+            });
+            
+            // التنقل بين أقسام الوسائط
+            const mediaTabs = document.querySelectorAll('.media-tab');
+            const mediaContents = document.querySelectorAll('.media-content');
+            
+            mediaTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const mediaType = this.getAttribute('data-media');
+                    
+                    // إزالة النشاط من جميع الأزرار والمحتويات
+                    mediaTabs.forEach(t => t.classList.remove('active'));
+                    mediaContents.forEach(c => c.classList.remove('active'));
+                    
+                    // إضافة النشاط للعناصر المحددة
+                    this.classList.add('active');
+                    document.getElementById(`${mediaType}-content`).classList.add('active');
+                });
+            });
+            
+            // فتح القصص في المودال
+            const storyCards = document.querySelectorAll('.story-card');
+            const storyModal = document.getElementById('storyModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalAuthor = document.getElementById('modalAuthor');
+            const modalDate = document.getElementById('modalDate');
+            const modalLocation = document.getElementById('modalLocation');
+            const modalImage = document.getElementById('modalImage');
+            const modalText = document.getElementById('modalText');
+            
+            storyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const storyId = this.getAttribute('data-story');
+                    const story = stories[storyId];
+                    
+                    if (story) {
+                        modalTitle.textContent = story.title;
+                        modalAuthor.textContent = story.author;
+                        modalDate.textContent = story.date;
+                        modalLocation.textContent = story.location;
+                        modalImage.style.backgroundImage = `url('${story.image}')`;
+                        modalText.innerHTML = story.content;
+                        
+                        storyModal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // إغلاق المودال
+            closeModal.addEventListener('click', function() {
+                storyModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // إغلاق المودال عند النقر خارج المحتوى
+            storyModal.addEventListener('click', function(e) {
+                if (e.target === storyModal) {
+                    storyModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // التنقل السلس بين الأقسام
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تأثير التمرير على الهيدر
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+                } else {
+                    header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
